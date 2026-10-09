@@ -10,12 +10,12 @@ const ENV_KEYS = [
   'CLOUDFLARE_PUBLIC_URL',
 ] as const
 
-const emptyCloudflare = {
-  CLOUDFLARE_ACCOUNT_ID: '',
-  CLOUDFLARE_ACCESS_KEY_ID: '',
-  CLOUDFLARE_SECRET_ACCESS_KEY: '',
-  CLOUDFLARE_BUCKET: '',
-  CLOUDFLARE_PUBLIC_URL: '',
+const cloudflare = {
+  CLOUDFLARE_ACCOUNT_ID: 'account-id',
+  CLOUDFLARE_ACCESS_KEY_ID: 'access-key-id',
+  CLOUDFLARE_SECRET_ACCESS_KEY: 'secret-access-key',
+  CLOUDFLARE_BUCKET: 'brevly',
+  CLOUDFLARE_PUBLIC_URL: 'https://cdn.example',
 }
 
 const databaseUrl = 'postgresql://docker:docker@localhost:5432/brevly'
@@ -53,7 +53,7 @@ describe('loadEnv', () => {
     replaceEnv({
       PORT: '',
       DATABASE_URL: databaseUrl,
-      ...emptyCloudflare,
+      ...cloudflare,
     })
 
     const { env } = await importEnv()
@@ -64,7 +64,7 @@ describe('loadEnv', () => {
   it('rejects a missing DATABASE_URL', async () => {
     replaceEnv({
       PORT: '3333',
-      ...emptyCloudflare,
+      ...cloudflare,
     })
 
     await expect(importEnv()).rejects.toThrow(/DATABASE_URL/)
@@ -74,9 +74,31 @@ describe('loadEnv', () => {
     replaceEnv({
       PORT: '3333',
       DATABASE_URL: 'https://example.com',
-      ...emptyCloudflare,
+      ...cloudflare,
     })
 
     await expect(importEnv()).rejects.toThrow()
+  })
+
+  it('rejects an empty Cloudflare credential', async () => {
+    replaceEnv({
+      PORT: '3333',
+      DATABASE_URL: databaseUrl,
+      ...cloudflare,
+      CLOUDFLARE_ACCOUNT_ID: '',
+    })
+
+    await expect(importEnv()).rejects.toThrow(/CLOUDFLARE_ACCOUNT_ID/)
+  })
+
+  it('rejects a Cloudflare public URL that is not a URL', async () => {
+    replaceEnv({
+      PORT: '3333',
+      DATABASE_URL: databaseUrl,
+      ...cloudflare,
+      CLOUDFLARE_PUBLIC_URL: 'not-a-url',
+    })
+
+    await expect(importEnv()).rejects.toThrow(/CLOUDFLARE_PUBLIC_URL/)
   })
 })
