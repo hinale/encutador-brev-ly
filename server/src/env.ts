@@ -16,11 +16,11 @@ const envSchema = z.object({
     .string({ required_error: 'DATABASE_URL is required' })
     .url()
     .startsWith('postgresql://'),
-  CLOUDFLARE_ACCOUNT_ID: z.string(),
-  CLOUDFLARE_ACCESS_KEY_ID: z.string(),
-  CLOUDFLARE_SECRET_ACCESS_KEY: z.string(),
-  CLOUDFLARE_BUCKET: z.string(),
-  CLOUDFLARE_PUBLIC_URL: z.string(),
+  CLOUDFLARE_ACCOUNT_ID: z.string().min(1),
+  CLOUDFLARE_ACCESS_KEY_ID: z.string().min(1),
+  CLOUDFLARE_SECRET_ACCESS_KEY: z.string().min(1),
+  CLOUDFLARE_BUCKET: z.string().min(1),
+  CLOUDFLARE_PUBLIC_URL: z.string().min(1).url(),
 })
 
 export type Env = z.infer<typeof envSchema>
