@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch --env-file .env src/infra/http/server.ts",
-    "test": "vitest run",
+    "test": "node --env-file=.env ./node_modules/vitest/vitest.mjs run",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate"
   },
