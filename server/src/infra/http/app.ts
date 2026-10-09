@@ -7,6 +7,10 @@ import {
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 import { createLinkRoute } from './routes/create-link'
+import { deleteLinkRoute } from './routes/delete-link'
+import { getLinkRoute } from './routes/get-link'
+import { incrementLinkAccessRoute } from './routes/increment-link-access'
+import { listLinksRoute } from './routes/list-links'
 
 export function buildServer() {
   const server = fastify().withTypeProvider<ZodTypeProvider>()
@@ -28,6 +32,10 @@ export function buildServer() {
 
   server.register(fastifyCors, { origin: '*' })
   server.register(createLinkRoute)
+  server.register(listLinksRoute)
+  server.register(incrementLinkAccessRoute)
+  server.register(getLinkRoute)
+  server.register(deleteLinkRoute)
 
   return server
 }
