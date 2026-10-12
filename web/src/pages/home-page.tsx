@@ -1,20 +1,17 @@
 import logo from '../assets/logo.svg'
-import { PageShell } from '../components/page-shell'
-import { Button } from '../components/ui/button'
-import { Card } from '../components/ui/card'
-import { Input } from '../components/ui/input'
+import { CreateLinkForm } from '../components/create-link-form'
+import { LinksPlaceholder } from '../components/links-placeholder'
 
 export function HomePage() {
   return (
-    <PageShell title="Página inicial">
-      <img src={logo} alt="Brev.ly" className="h-8 w-fit" />
-      <Card className="flex flex-col gap-4">
-        <label className="flex flex-col gap-2 text-xs font-semibold uppercase text-gray-500">
-          Link original
-          <Input placeholder="www.exemplo.com.br" />
-        </label>
-        <Button className="w-full">Salvar link</Button>
-      </Card>
-    </PageShell>
+    <main className="min-h-dvh bg-gray-200 px-3 py-8">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8">
+        <img src={logo} alt="Brev.ly" className="h-8" />
+        <div className="flex w-full flex-col gap-3 lg:flex-row lg:items-start lg:gap-5">
+          <CreateLinkForm />
+          <LinksPlaceholder />
+        </div>
+      </div>
+    </main>
   )
 }
