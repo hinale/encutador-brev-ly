@@ -47,6 +47,31 @@ describe('listLinks', () => {
 
     const { links } = unwrapEither(result)
     expect(links.map((link) => link.shortUrl)).toEqual(['newer', 'older'])
+    expect(links[0]?.description).toBeNull()
+    expect(links[0]?.previewImageUrl).toBeNull()
+  })
+
+  it('returns optional metadata for each link', async () => {
+    await db.insert(schema.links).values({
+      originalUrl: 'https://example.com',
+      shortUrl: 'with-meta',
+      description: 'Desc',
+      previewImageUrl: 'https://cdn.example.com/previews/abc.png',
+    })
+
+    const result = await listLinks()
+
+    expect(isRight(result)).toBe(true)
+
+    if (!isRight(result)) {
+      return
+    }
+
+    const [link] = unwrapEither(result).links
+    expect(link?.description).toBe('Desc')
+    expect(link?.previewImageUrl).toBe(
+      'https://cdn.example.com/previews/abc.png',
+    )
   })
 })
 
@@ -91,7 +116,18 @@ describe('GET /links', () => {
 
     expect(response.statusCode).toBe(200)
     expect(response.json()).toMatchObject({
-      links: [{ shortUrl: 'newer' }, { shortUrl: 'older' }],
+      links: [
+        {
+          shortUrl: 'newer',
+          description: null,
+          previewImageUrl: null,
+        },
+        {
+          shortUrl: 'older',
+          description: null,
+          previewImageUrl: null,
+        },
+      ],
     })
   })
 })

@@ -33,6 +33,31 @@ describe('getLink', () => {
     expect(link.shortUrl).toBe('rocketseat')
     expect(link.originalUrl).toBe('https://rocketseat.com.br')
     expect(link.accessCount).toBe(0)
+    expect(link.description).toBeNull()
+    expect(link.previewImageUrl).toBeNull()
+  })
+
+  it('returns optional metadata when present', async () => {
+    await createLink({
+      originalUrl: 'https://rocketseat.com.br',
+      shortUrl: 'rocketseat',
+      description: 'Curso',
+      previewImageUrl: 'https://cdn.example.com/previews/abc.png',
+    })
+
+    const result = await getLink({ shortUrl: 'rocketseat' })
+
+    expect(isRight(result)).toBe(true)
+
+    if (!isRight(result)) {
+      return
+    }
+
+    const link = unwrapEither(result)
+    expect(link.description).toBe('Curso')
+    expect(link.previewImageUrl).toBe(
+      'https://cdn.example.com/previews/abc.png',
+    )
   })
 
   it('returns not found when the slug does not exist', async () => {
@@ -99,6 +124,8 @@ describe('GET /links/:shortUrl', () => {
         shortUrl: 'rocketseat',
         originalUrl: 'https://rocketseat.com.br',
         accessCount: 0,
+        description: null,
+        previewImageUrl: null,
       },
     })
 
