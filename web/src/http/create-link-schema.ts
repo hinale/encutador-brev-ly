@@ -1,6 +1,5 @@
 import { z } from 'zod'
-
-const SHORT_URL_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
+import { SHORT_URL_PATTERN } from './short-url-pattern'
 
 export const ORIGINAL_URL_ERROR_MESSAGE = 'Informe uma url válida.'
 export const SHORT_URL_ERROR_MESSAGE =
