@@ -6,6 +6,8 @@ export const linkSchema = z.object({
   originalUrl: z.string(),
   shortUrl: z.string(),
   accessCount: z.number(),
+  description: z.string().nullable(),
+  previewImageUrl: z.string().nullable(),
   createdAt: z.string(),
 })
 
@@ -22,6 +24,8 @@ export function presentLink(link: CreatedLink) {
     originalUrl: link.originalUrl,
     shortUrl: link.shortUrl,
     accessCount: link.accessCount,
+    description: link.description,
+    previewImageUrl: link.previewImageUrl,
     createdAt: link.createdAt.toISOString(),
   }
 }

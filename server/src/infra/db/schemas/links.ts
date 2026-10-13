@@ -10,6 +10,8 @@ export const links = pgTable(
     originalUrl: text('original_url').notNull(),
     shortUrl: text('short_url').notNull().unique(),
     accessCount: integer('access_count').notNull().default(0),
+    description: text('description'),
+    previewImageUrl: text('preview_image_url'),
     createdAt: timestamp('created_at', { withTimezone: true })
       .defaultNow()
       .notNull(),
