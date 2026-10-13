@@ -84,7 +84,7 @@ export function CreateLinkForm() {
     : 'border-gray-300'
 
   return (
-    <Card className="flex w-full shrink-0 flex-col gap-6 lg:max-w-sm">
+    <Card className="flex w-full min-w-0 shrink-0 flex-col gap-6 lg:max-w-sm">
       <h2 className="text-lg font-bold text-gray-600">Novo link</h2>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={FIELD_CLASS_NAME}>

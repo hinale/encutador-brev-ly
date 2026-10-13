@@ -72,9 +72,9 @@ export function RedirectPage() {
   }
 
   return (
-    <main className="flex min-h-dvh items-center justify-center bg-gray-200 px-3 py-8">
-      <div className="flex w-full max-w-xl flex-col items-center rounded-lg bg-gray-100 px-6 py-12 text-center sm:px-12">
-        <img src={logoIcon} alt="Brev.ly" className="mb-6 h-12 w-auto" />
+    <main className="flex min-h-dvh items-center justify-center overflow-x-hidden bg-gray-200 px-3 py-8">
+      <div className="flex w-full max-w-xl flex-col items-center rounded-lg bg-gray-100 px-5 py-10 text-center sm:px-12 sm:py-12">
+        <img src={logoIcon} alt="Brev.ly" className="mb-6 h-10 w-auto max-w-full sm:h-12" />
         <h1 className="mb-3 text-lg font-bold text-gray-600">
           Redirecionando...
         </h1>

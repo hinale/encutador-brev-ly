@@ -142,12 +142,12 @@ export function LinkList() {
     : null
 
   return (
-    <Card className="flex min-h-48 w-full flex-1 flex-col overflow-hidden">
-      <div className="flex items-center justify-between gap-4">
+    <Card className="flex min-h-48 w-full min-w-0 flex-1 flex-col overflow-hidden">
+      <div className="flex items-center justify-between gap-3">
         <h2 className="text-lg font-bold text-gray-600">Meus links</h2>
         <button
           type="button"
-          className={DOWNLOAD_BUTTON_CLASS_NAME}
+          className={`${DOWNLOAD_BUTTON_CLASS_NAME} shrink-0`}
           disabled={!canExport}
           aria-busy={exportLinksMutation.isPending}
           onClick={() => {
