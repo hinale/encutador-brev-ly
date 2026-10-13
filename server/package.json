@@ -9,7 +9,7 @@
     "start": "node dist/server.js",
     "test": "node --env-file=.env ./node_modules/vitest/vitest.mjs run",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "node --env-file=.env ./node_modules/drizzle-kit/bin.cjs migrate"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1148.0",
@@ -31,5 +31,8 @@
     "typescript": "^5.7.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.4"
+  },
+  "overrides": {
+    "cookie": "0.7.2"
   }
 }

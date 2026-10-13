@@ -43,14 +43,14 @@ export function LinkItem({
   }
 
   return (
-    <div className="flex flex-col gap-2 py-4">
-      <div className="flex items-center gap-4">
-        <div className="min-w-0 flex-1">
+    <div className="flex min-w-0 flex-col gap-2 py-4">
+      <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+        <div className="min-w-0 flex-1 overflow-hidden">
           <p className="truncate text-md font-semibold text-blue-base">{fullShortUrl}</p>
           <p className="mt-1 truncate text-sm text-gray-500">{link.originalUrl}</p>
         </div>
 
-        <div className="flex shrink-0 items-center gap-4">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-4">
           <span className="text-sm whitespace-nowrap text-gray-500">
             {formatAccessCount(link.accessCount)}
           </span>
