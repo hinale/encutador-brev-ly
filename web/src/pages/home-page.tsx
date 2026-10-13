@@ -1,6 +1,6 @@
 import logo from '../assets/logo.svg'
 import { CreateLinkForm } from '../components/create-link-form'
-import { LinksPlaceholder } from '../components/links-placeholder'
+import { LinkList } from '../components/link-list'
 
 export function HomePage() {
   return (
@@ -9,7 +9,7 @@ export function HomePage() {
         <img src={logo} alt="Brev.ly" className="h-8" />
         <div className="flex w-full flex-col gap-3 lg:flex-row lg:items-start lg:gap-5">
           <CreateLinkForm />
-          <LinksPlaceholder />
+          <LinkList />
         </div>
       </div>
     </main>
