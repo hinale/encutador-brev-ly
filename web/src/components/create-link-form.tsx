@@ -10,12 +10,12 @@ import {
   createLinkFormSchema,
   type CreateLinkFormValues,
 } from '../http/create-link-schema'
+import { LINKS_QUERY_KEY } from '../http/list-links'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Input } from './ui/input'
 
 const SHORT_URL_PREFIX = 'brev.ly/'
-const LINKS_QUERY_KEY = ['links'] as const
 
 const FIELD_CLASS_NAME = 'flex flex-col gap-2'
 const FIELD_LABEL_CLASS_NAME =
